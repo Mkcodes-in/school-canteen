@@ -1,8 +1,14 @@
 import { useSnack } from "@/hooks/useSnack";
 
 export default function StudentCard() {
-  const { students } = useSnack();
+  const { students, studentsLoading } = useSnack();
 
+  if (studentsLoading) return (
+    <div className="grid place-content-center h-screen">
+      <h2>Loading...</h2>
+    </div>
+  )
+  
   return (
     <>
       {/* Student Cards */}

@@ -1,61 +1,70 @@
+import { createContext, type ReactNode } from "react";
 import type { Order } from "@/types/Order";
-import type { Students } from "@/types/Student";
 
-import React, { createContext, useState, type ReactNode } from "react";
+import { useResource } from "@/hooks/useResource";
+
+import type { Students } from "@/types/Student";
+import { createStudent, getStudents } from "@/api/studentApi";
+import { createOrder, getOrders } from "@/api/ordersApi";
 
 interface AppContextType {
-    students: Students[];
-    orders: Order[];
-    setOrders: React.Dispatch<React.SetStateAction<Order[]>>;
+  students: Students[];
+  orders: Order[];
 
-    loading: boolean;
-    error: string | null;
-    fetchStudents: () => Promise<void>;
+  studentsLoading: boolean;
+  ordersLoading: boolean;
+
+  studentsError: string | null;
+  ordersError: string | null;
+
+  fetchStudents: () => Promise<void>;
+  addStudent: (student: Partial<Students>) => Promise<void>;
+
+  fetchOrders: () => Promise<void>;
+  addOrder: (order: Partial<Order>) => Promise<void>;
 }
-
 
 export const AppContext = createContext<AppContextType | null>(null);
 
-type ChildrenProps = {
-    children: ReactNode;
-};
+type Props = { children: ReactNode };
 
-export default function AppProvider({ children }: ChildrenProps) {
-    const [students, setStudents] = useState<Students[]>([]);
-    const [orders, setOrders] = useState<Order[]>([]);
+export default function AppProvider({ children }: Props) {
+  const {
+    data: students,
+    loading: studentsLoading,
+    error: studentsError,
+    fetchAll: fetchStudents,
+    create: addStudent,
+  } = useResource<Students>(getStudents, createStudent);
 
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+  const {
+    data: orders,
+    loading: ordersLoading,
+    error: ordersError,
+    fetchAll: fetchOrders,
+    create: addOrder,
+  } = useResource<Order>(getOrders, createOrder);
 
-    const fetchStudents = async () => {
-        try {
-            setLoading(true);
-            setError(null);
+  return (
+    <AppContext.Provider
+      value={{
+        students,
+        orders,
 
-            const res = await fetch("https://696b4411624d7ddccaa0a3bd.mockapi.io/students");
-            const data = await res.json();
+        studentsLoading,
+        ordersLoading,
 
-            setStudents(data);
-        } catch {
-            setError("Failed to load students");
-        } finally {
-            setLoading(false);
-        }
-    };
+        studentsError,
+        ordersError,
 
-    return (
-        <AppContext.Provider
-            value={{
-                students,
-                orders,
-                setOrders,
-                loading,
-                error,
-                fetchStudents,
-            }}
-        >
-            {children}
-        </AppContext.Provider>
-    );
+        fetchStudents,
+        addStudent,
+
+        fetchOrders,
+        addOrder,
+      }}
+    >
+      {children}
+    </AppContext.Provider>
+  );
 }
-

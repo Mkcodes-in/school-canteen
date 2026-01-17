@@ -1,4 +1,4 @@
-import type { SnacksProps } from "./snack";
+import type { SnacksProps } from "./Snack";
 
 export interface Students {
     id: number;
