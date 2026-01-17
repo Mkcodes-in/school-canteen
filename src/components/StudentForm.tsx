@@ -10,7 +10,6 @@ import {
     DialogFooter,
     DialogTrigger,
 } from "@/components/ui/dialog";
-
 import { Input } from "@/components/ui/input";
 import React, { useEffect, type SetStateAction } from "react";
 
@@ -23,7 +22,7 @@ type FormProps = {
     setOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
-export default function StudentForm({open, setOpen}: FormProps) {
+export default function StudentForm({ open, setOpen }: FormProps) {
     const { fetchStudents, addStudent } = useSnack();
     const {
         register,
@@ -37,7 +36,15 @@ export default function StudentForm({open, setOpen}: FormProps) {
     }, []);
 
     const onSubmit = async (data: FormValues) => {
-        await addStudent(data);
+        // generate referral code
+        const referralCode = `REF-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+
+        const newStudent = {
+            ...data,
+            referralCode,
+        };
+
+        await addStudent(newStudent);
         reset();
         setOpen(false);
     };

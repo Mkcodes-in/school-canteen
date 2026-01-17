@@ -1,4 +1,5 @@
 import { useSnack } from "@/hooks/useSnack";
+import { ArrowRight } from "lucide-react";
 
 export default function StudentCard() {
   const { students, studentsLoading } = useSnack();
@@ -8,32 +9,40 @@ export default function StudentCard() {
       <h2>Loading...</h2>
     </div>
   )
-  
+
   return (
-    <>
-      {/* Student Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {students.map((student) => (
-          <div
-            key={student.id}
-            className="rounded-2xl bg-white p-5 shadow-md hover:shadow-xl transition"
-          >
-            <p className="text-xs text-gray-400">ID: {student.id}</p>
-
-            <h3 className="mt-1 text-lg font-semibold text-gray-800">
-              {student.name}
-            </h3>
-
-            <p className="mt-3 text-sm text-gray-500">
-              Total Spending
-            </p>
-
-            <p className="text-xl font-bold text-red-500">
-              {/* ₹{student} */}
-            </p>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {students.map((student) => (
+        <div
+          key={student.id}
+          className="group rounded-md bg-white p-6 border border-gray-200 shadow-sm hover:border-orange-600 transition duration-300"
+        >
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex flex-col">
+              <p className="text-xs text-gray-400">ID: {student.id}</p>
+              <h3 className="mt-2 text-lg font-semibold text-gray-900">
+                {student.name}
+              </h3>
+            </div>
           </div>
-        ))}
-      </div>
-    </>
+
+          <div className="mt-4 flex items-center justify-between gap-3">
+            <div className="flex flex-col">
+              <p className="text-xs text-gray-500">Referral Code</p>
+              <span className="mt-1 text-sm font-medium text-gray-800 bg-gray-100 px-3 py-1 rounded-lg">
+                {student.referralCode}
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
+            <p>Orders: {student.orders?.length || 0}</p>
+            <button className="flex items-center gap-2 text-md group-hover:text-orange-500 transition cursor-pointer">
+              View details <ArrowRight size={16}/>
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
   );
 }

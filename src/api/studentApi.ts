@@ -1,3 +1,5 @@
+import type { Students } from "@/types/Student";
+
 const BASE_URL = "https://696b4411624d7ddccaa0a3bd.mockapi.io/students";
 
 export const getStudents = async () => {
@@ -5,11 +7,16 @@ export const getStudents = async () => {
   return res.json();
 };
 
-export const createStudent = async (student: any) => {
+export const createStudent = async (student: Students) => {
   const res = await fetch(BASE_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(student),
   });
+
+  if (!res.ok) {
+    throw new Error("Failed to create student");
+  }
+
   return res.json();
 };
