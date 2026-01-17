@@ -1,48 +1,48 @@
 export const SNACKS = [
   {
-    id: "1",
+    id: 1,
     name: "Samosa",
     price: 10,
     ordersCount: 0,
-    image: "https://images.unsplash.com/photo-1601050690597-df0568f70950"
+    image: "https://images.pexels.com/photos/2474658/pexels-photo-2474658.jpeg"
   },
   {
-    id: "2",
+    id: 2,
     name: "Sandwich",
     price: 30,
     ordersCount: 0,
-    image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af"
+    image: "https://images.pexels.com/photos/28681955/pexels-photo-28681955.jpeg"
   },
   {
-    id: "3",
+    id: 3,
     name: "Juice",
     price: 20,
     ordersCount: 0,
-    image: "https://images.unsplash.com/photo-1571689936045-fc9d2f5b63f3"
+    image: "https://images.pexels.com/photos/13211075/pexels-photo-13211075.jpeg"
   },
   {
-    id: "4",
+    id: 4,
     name: "Burger",
     price: 40,
     ordersCount: 0,
-    image: "https://images.unsplash.com/photo-1550547660-d9450f859349"
+    image: "https://images.pexels.com/photos/11568799/pexels-photo-11568799.jpeg"
   },
   {
-    id: "5",
+    id: 5,
     name: "Pizza Slice",
     price: 50,
     ordersCount: 0,
-    image: "https://images.unsplash.com/photo-1548365328-9f547fb0954d"
+    image: "https://images.pexels.com/photos/34413617/pexels-photo-34413617.jpeg"
   },
   {
-    id: "6",
+    id: 6,
     name: "French Fries",
     price: 25,
     ordersCount: 0,
-    image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add"
+    image: "https://images.pexels.com/photos/32421783/pexels-photo-32421783.jpeg"
   },
   {
-    id: "7",
+    id: 7,
     name: "Chocolate Milk",
     price: 15,
     ordersCount: 0,

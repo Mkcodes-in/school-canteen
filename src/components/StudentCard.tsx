@@ -38,7 +38,7 @@ export default function StudentCard() {
           <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
             <p>Orders: {student.orders?.length || 0}</p>
             <button className="flex items-center gap-2 text-md group-hover:text-orange-500 transition cursor-pointer">
-              View details <ArrowRight size={16}/>
+              View details <ArrowRight size={16} />
             </button>
           </div>
         </div>

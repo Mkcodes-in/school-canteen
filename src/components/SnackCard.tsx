@@ -1,39 +1,68 @@
 import { SNACKS } from "@/data/mockData";
+import { useState } from "react";
+import OrderForm from "./OrderForm";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import type { SnacksProps } from "@/types/Snack";
 
 export default function SnackCard() {
+  const [open, setOpen] = useState(false);
+  const [selectedSnack, setSelectedSnack] = useState<SnacksProps | null>(null);
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-      {SNACKS.map((snack) => (
-        <div
-          key={snack.id}
-          className="group rounded-md bg-white shadow-md overflow-hidden hover:shadow-2xl transition duration-300"
-        >
-          {/* Image */}
-          <div className="relative h-40 overflow-hidden">
+    <>
+      {/* snacks layout */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {SNACKS.map((snack) => (
+          <div
+            key={snack.id}
+            className="rounded-md bg-white shadow-md overflow-hidden"
+          >
             <img
               src={snack.image}
               alt={snack.name}
-              className="h-full w-full object-cover group-hover:scale-110 transition duration-500"
+              className="h-40 w-full object-cover"
             />
 
-            {/* Price badge */}
-            <span className="absolute top-3 right-3 rounded-full bg-green-600 px-3 py-1 text-sm font-semibold text-white shadow">
-              ₹{snack.price}
-            </span>
-          </div>
+            <div className="p-4">
+              <h3 className="font-bold">{snack.name}</h3>
+              <p className="text-green-600 font-semibold">
+                ₹{snack.price}
+              </p>
+            </div>
 
-          {/* Content */}
-          <div className="flex flex-col gap-3 p-5">
-            <h3 className="text-lg font-bold text-gray-800">
-              {snack.name}
-            </h3>
-
-            <button className="mt-2 flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-orange-500 to-yellow-500 py-2.5 text-white font-semibold shadow-md hover:from-orange-600 hover:to-yellow-600 transition cursor-pointer">
+            <button
+              onClick={() => {
+                setSelectedSnack(snack);
+                setOpen(true);
+              }}
+              className="w-full bg-orange-500 py-2 text-white"
+            >
               Order Now
             </button>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+
+      {/* Modal */}
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent aria-describedby={undefined}>
+          <DialogHeader>
+            <DialogTitle>Order Now</DialogTitle>
+          </DialogHeader>
+
+          {selectedSnack && (
+            <OrderForm
+              snackName={selectedSnack.name}
+              price={selectedSnack.price}
+            />
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
