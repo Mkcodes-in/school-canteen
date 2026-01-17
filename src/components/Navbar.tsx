@@ -1,30 +1,13 @@
-import { useSnack } from "@/hooks/useSnack";
 import { Users, UtensilsCrossed } from "lucide-react";
-import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
     const location = useLocation();
-    const { snacks, setSnacks } = useSnack();
-
     const navItems = [
         { path: '/', label: 'Snacks', icon: UtensilsCrossed },
         { path: '/students', label: 'Students', icon: Users },
     ];
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const res = await fetch('https://696b4411624d7ddccaa0a3bd.mockapi.io/snaks');
-                const data = await res.json();
-                setSnacks(data);
-            } catch (error) {
-                console.error("error from backend", error);
-            }
-        })()
-    }, []);
-
-    console.log(snacks)
     return (
         <header className="bg-white shadow-md border-b border-orange-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

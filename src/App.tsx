@@ -1,15 +1,15 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import SnackCard from "./components/SnackCard";
-import StudentCard from "./components/StudentCard";
+import Snacks from "./pages/Snacks";
+import Students from "./pages/Students";
 
 export default function App() {
   return (
     <>
       <Layout>
         <Routes>
-          <Route path="/" element={<SnackCard />} />
-          <Route path="/students" element={<StudentCard />} />
+          <Route path="/" element={<Snacks />} />
+          <Route path="/students" element={<Students />} />
         </Routes>
       </Layout>
     </>
