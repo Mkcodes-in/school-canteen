@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 import { useSnack } from "@/hooks/useSnack";
 import type React from "react";
 import type { SetStateAction } from "react";
-import type { SnacksProps } from "../types/Snack";
+import type { Snack } from "@/types/Snack";
 
 const formSchema = z.object({
   studentId: z.string().min(1, "Student is required"),
@@ -32,7 +32,7 @@ const formSchema = z.object({
 type productProps = {
   open: boolean;
   setOpen: React.Dispatch<SetStateAction<boolean>>;
-  selectedSnack: SnacksProps;
+  selectedSnack: Snack;
 }
 
 export default function StudentForm({ selectedSnack, setOpen }: productProps) {

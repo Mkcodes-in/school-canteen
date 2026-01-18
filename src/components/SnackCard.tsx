@@ -7,11 +7,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import type { SnacksProps } from "../types/Snack";
+import type { Snack } from "@/types/Snack";
 
 export default function SnackCard() {
   const [open, setOpen] = useState(false);
-  const [selectedSnack, setSelectedSnack] = useState<SnacksProps | null>(null);
+  const [selectedSnack, setSelectedSnack] = useState<Snack | null>(null);
 
   return (
     <>

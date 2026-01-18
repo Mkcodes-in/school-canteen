@@ -1,4 +1,4 @@
-export interface SnacksProps {
+export interface Snack {
     id: number,
     name: string,
     price: number,
