@@ -13,7 +13,7 @@ export const studentDetail = async (id: string) => {
   return data;
 };
 
-export const createStudent = async (student: Students) => {
+export const createStudent = async (student: Partial<Omit<Students, "id">>) => {
   const res = await fetch(BASE_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

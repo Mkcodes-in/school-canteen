@@ -4,7 +4,7 @@ import StudentForm from "@/components/StudentForm";
 
 export default function Students() {
     const [open, setOpen] = useState(false);
-
+    
     return (
         <div className="px-6 py-10">
             {/* Header */}

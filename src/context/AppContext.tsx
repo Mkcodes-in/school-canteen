@@ -35,7 +35,9 @@ export default function AppProvider({ children }: Props) {
     error: studentsError,
     fetchAll: fetchStudents,
     create: addStudent,
-  } = useResource<Students>(getStudents, createStudent);
+  } = useResource<Students>(getStudents, (student) =>
+    createStudent(student as Partial<Omit<Students, "id">>)
+  );
 
   const {
     data: orders,

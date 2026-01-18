@@ -56,7 +56,7 @@ export default function StudentForm({ selectedSnack, setOpen }: productProps) {
           productId: String(selectedSnack.id),
           title: selectedSnack.name,
           price: selectedSnack.price,
-          quantity: values.quantity
+          quantity: values.quantity 
         },
       ],
       totalAmount: selectedSnack.price * values.quantity,

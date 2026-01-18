@@ -1,5 +1,6 @@
 import { getOrdersByStudent } from "@/api/ordersApi";
 import { studentDetail } from "@/api/studentApi";
+import Loader from "@/components/Loader";
 import type { Order } from "@/types/Order";
 import type { Students } from "@/types/Student";
 import { useEffect, useState } from "react";
@@ -33,14 +34,16 @@ export default function StudentDetail() {
     }, [id]);
 
     if (loading) {
-        return <p>Loading...</p>;
+        return <Loader />;
     }
 
     if (!loading && orders.length === 0) {
         return <p className="text-gray-500">No purchases yet</p>;
     }
-    
-    console.log(orders)
+
+    const totalSpending =
+        orders?.map(order => order.products?.reduce((sum, p) => sum + p.price * p.quantity, 0) ?? 0).reduce((a, b) => a + b, 0) ?? 0;
+
     return (
         <div className="min-h-screen p-6 flex justify-center items-start">
             <div className="w-full max-w-3xl bg-white rounded-xl shadow-md p-6">
@@ -75,8 +78,8 @@ export default function StudentDetail() {
                     </div>
 
                     <div>
-                        <p className="text-sm text-gray-500">Total Orders</p>
-                        <p className="text-lg font-medium text-gray-800">{ }</p>
+                        <p className="text-sm text-gray-500">Total Spending</p>
+                        <p className="text-lg font-medium text-green-800">₹ {totalSpending}</p>
                     </div>
                 </div>
 

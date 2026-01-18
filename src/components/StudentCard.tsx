@@ -1,16 +1,18 @@
 import { useSnack } from "@/hooks/useSnack";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import Loader from "./Loader";
 
 export default function StudentCard() {
   const { students, studentsLoading } = useSnack();
   const navigate = useNavigate();
 
-  if (studentsLoading) return (
-    <div className="grid place-content-center h-screen">
-      <h2>Loading...</h2>
-    </div>
+  console.log(students)
+  if(students.length === 0) return (
+    <div className="flex items-center justify-center text-center text-gray-500">No student please create new student</div>
   )
+
+  if (studentsLoading) return (<Loader />)
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

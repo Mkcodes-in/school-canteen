@@ -1,3 +1,4 @@
+import Loader from "@/components/Loader";
 import { useSnack } from "@/hooks/useSnack"
 import { useEffect } from "react";
 
@@ -15,14 +16,10 @@ export default function Orders() {
         })()
     }, []);
 
-    if (ordersLoading) return (
-        <div>
-            loading...
-        </div>
-    )
+    if (ordersLoading) return (<Loader />)
 
     if (orders.length === 0) {
-        return <p className="text-gray-500">No purchases yet</p>;
+        return <p className="text-gray-500 text-center">No purchases yet</p>;
     }
 
     return (

@@ -1,5 +1,6 @@
 export interface Students {
-    id: number;
+    id: string;
     name: string;
     referralCode: string;
 }
+export type CreateStudent = Omit<Students, "id">;

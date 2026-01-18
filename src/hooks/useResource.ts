@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 type FetchFn<T> = () => Promise<T[]>;
-type CreateFn<T> = (item: Partial<T>) => Promise<T>;
+type CreateFn<T> = (item: Partial<Omit<T, 'id'>>) => Promise<T>;
 
 export function useResource<T>(fetchFn: FetchFn<T>, createFn: CreateFn<T>) {
     const [data, setData] = useState<T[]>([]);
@@ -21,7 +21,7 @@ export function useResource<T>(fetchFn: FetchFn<T>, createFn: CreateFn<T>) {
         }
     };
 
-    const create = async (item: Partial<T>) => {
+    const create = async (item: Partial<Omit<T, 'id'>>) => {
         setLoading(true);
         setError(null);
         try {
