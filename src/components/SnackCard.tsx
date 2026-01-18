@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import type { Snack } from "@/types/Snack";
+import type { Snack } from "../types/Snack";
 
 export default function SnackCard() {
   const [open, setOpen] = useState(false);
