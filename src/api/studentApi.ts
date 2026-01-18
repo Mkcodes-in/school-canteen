@@ -7,6 +7,12 @@ export const getStudents = async () => {
   return res.json();
 };
 
+export const studentDetail = async (id: string) => {
+  const res = await fetch(`${BASE_URL}/${id}`);
+  const data = await res.json();
+  return data;
+};
+
 export const createStudent = async (student: Students) => {
   const res = await fetch(BASE_URL, {
     method: "POST",

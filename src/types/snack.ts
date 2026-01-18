@@ -1,5 +1,6 @@
 export interface SnacksProps {
-    id: number;
-    name: string;
-    price: number;
+    id: number,
+    name: string,
+    price: number,
+    ordersCount: number,
 }

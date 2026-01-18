@@ -1,8 +1,10 @@
 import { useSnack } from "@/hooks/useSnack";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function StudentCard() {
   const { students, studentsLoading } = useSnack();
+  const navigate = useNavigate();
 
   if (studentsLoading) return (
     <div className="grid place-content-center h-screen">
@@ -36,8 +38,9 @@ export default function StudentCard() {
           </div>
 
           <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
-            <p>Orders: {student.orders?.length || 0}</p>
-            <button className="flex items-center gap-2 text-md group-hover:text-orange-500 transition cursor-pointer">
+            <button
+              onClick={() => navigate(`/students/${student.id}`)}
+              className="flex items-center gap-2 text-md group-hover:text-orange-500 transition cursor-pointer">
               View details <ArrowRight size={16} />
             </button>
           </div>

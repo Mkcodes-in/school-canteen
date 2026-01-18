@@ -57,8 +57,9 @@ export default function SnackCard() {
 
           {selectedSnack && (
             <OrderForm
-              snackName={selectedSnack.name}
-              price={selectedSnack.price}
+              open={open}
+              setOpen={setOpen}
+              selectedSnack={selectedSnack}
             />
           )}
         </DialogContent>

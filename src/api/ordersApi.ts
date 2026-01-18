@@ -6,10 +6,20 @@ export const getOrders = async () => {
 };
 
 export const createOrder = async (order: any) => {
-  const res = await fetch(ORDER_URL, {
+  const res = await fetch(`${ORDER_URL}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(order),
   });
+  return res.json();
+};
+
+export const getOrdersByStudent = async (id: string) => {
+  const res = await fetch(`${ORDER_URL}?studentId=${id}`);
+
+  if (!res.ok) {
+    throw new Error("Orders fetch failed");
+  }
+
   return res.json();
 };
