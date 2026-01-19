@@ -8,14 +8,6 @@ https://github.com/user-attachments/assets/2f387932-de58-43ae-bc82-1bbd16d08b0b
 
 # School Canteen – Frontend Prototype
 
-This project is a frontend prototype for a school canteen digital ordering system.
-It is built to demonstrate clean UI, component-based architecture, state management,
-form handling, and API integration using modern React tools.
-
-This is not a production-grade application and focuses mainly on frontend concepts.
-
----
-
 ## ✨ Features Implemented
 
 - Snacks listing with price and order count
